@@ -17,7 +17,7 @@ sudo apt-get install \
     libelf-dev \
     libpcap-dev \
     build-essential \
-    libbpf \
+    libbpf-dev \
     linux-headers-$(uname -r) \
     bpftool
 ```
