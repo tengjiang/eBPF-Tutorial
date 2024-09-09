@@ -470,7 +470,8 @@ int main() {
         printf("START: Syscall counts:\n");
         for (int i = 0; i < MAX_SYSCALLS; i++) {
             if (syscall_counts[i] > 0) {
-                printf("%d %s: %llu\n", i, syscall_id_to_name[i],
+                char *sc_name = syscall_id_to_name[i],
+                printf("%3d %s: %llu\n", i, sc_name ? sc_name : "noname",
                        syscall_counts[i]);
             }
         }
