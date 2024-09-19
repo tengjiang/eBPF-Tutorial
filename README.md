@@ -1,7 +1,7 @@
 # EECS6891: eBPF Tutorial
 
 This repo contains the code and slides for course EECS6891 (eBPF Seminar).
-The examples were tested on a Debian 12 VM.
+The examples were tested on a Debian 12 VM and an x86 machine with kernel version 5.15.
 
 ## Slides
 
