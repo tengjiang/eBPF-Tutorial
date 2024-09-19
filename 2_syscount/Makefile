@@ -25,14 +25,19 @@ CLANG_BPF_SYS_INCLUDES ?= $(shell $(CLANG) -v -E - </dev/null 2>&1 \
 
 all: $(BPF_OBJ) $(USERSPACE_BIN)
 
-$(BPF_OBJ): $(BPF_SRC)
+$(BPF_OBJ): $(BPF_SRC) vmlinux.h
 	$(CLANG) $(CFLAGS) $(CLANG_BPF_SYS_INCLUDES) $(BPF_SRC) -o $(BPF_OBJ)
 
 $(USERSPACE_BIN): $(USERSPACE_SRC)
 	$(CLANG) -g $(USERSPACE_CFLAGS) $(CLANG_BPF_SYS_INCLUDES) $(USERSPACE_SRC) -o $(USERSPACE_BIN) $(USERSPACE_LINKER_FLAGS)
 
+vmlinux.h:
+        bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
 
 clean:
 	rm -f $(BPF_OBJ) $(USERSPACE_BIN)
+
+cleanall: clean
+	rm -f vmlinux.h
 
 .PHONY: all clean
